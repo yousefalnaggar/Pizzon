@@ -26,18 +26,30 @@ if (hamburger && navMenu) {
     });
 }
 
-// Slider functionality for menu items (only active on desktop)
+// Slider functionality for menu items (active on tablet and desktop)
 const pizzaContainer = document.querySelector('.menu-items');
 const pizzas = document.querySelectorAll('.menu-item');
 let pizzaIndex = 0;
 
 function updatePizzaSlider() {
-    if (window.innerWidth > 1200) {
-        const pizzaWidth = pizzas[0].offsetWidth + 130;
+    if (window.innerWidth > 768) {
+        const pizzaWidth = pizzas[0].offsetWidth + 20; // 20px gap between items
         pizzaContainer.style.transform = `translateX(-${pizzaIndex * pizzaWidth}px)`;
     } else {
         pizzaContainer.style.transform = 'none';
         pizzaIndex = 0;
+    }
+}
+
+function getVisiblePizzas() {
+    if (window.innerWidth >= 1400) {
+        return 4;
+    } else if (window.innerWidth >= 1024) {
+        return 3;
+    } else if (window.innerWidth >= 768) {
+        return 2;
+    } else {
+        return 1;
     }
 }
 
@@ -46,9 +58,9 @@ const pizzaPrevBtn = document.getElementById('pizzaPrev');
 
 if (pizzaNextBtn && pizzaPrevBtn) {
     pizzaNextBtn.addEventListener('click', () => {
-        if (window.innerWidth > 1200) {
+        if (window.innerWidth > 768) {
             const totalPizzas = pizzas.length;
-            const visiblePizzas = 3;
+            const visiblePizzas = getVisiblePizzas();
             if (pizzaIndex < totalPizzas - visiblePizzas) {
                 pizzaIndex++;
                 updatePizzaSlider();
@@ -57,7 +69,7 @@ if (pizzaNextBtn && pizzaPrevBtn) {
     });
 
     pizzaPrevBtn.addEventListener('click', () => {
-        if (window.innerWidth > 1200) {
+        if (window.innerWidth > 768) {
             if (pizzaIndex > 0) {
                 pizzaIndex--;
                 updatePizzaSlider();
@@ -66,14 +78,14 @@ if (pizzaNextBtn && pizzaPrevBtn) {
     });
 }
 
-// Slider functionality for testimonials (only active on desktop)
+// Slider functionality for testimonials (active on tablet and desktop)
 const container = document.querySelector('.testimonials');
 const cards = document.querySelectorAll('.testimonial-card');
 let currentIndex = 0;
 
 function updateTestimonialSlider() {
-    if (window.innerWidth > 1200) {
-        const cardWidth = cards[0].offsetWidth + 10;
+    if (window.innerWidth > 768) {
+        const cardWidth = cards[0].offsetWidth + (window.innerWidth > 1200 ? 10 : 15);
         container.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
     } else {
         container.style.transform = 'none';
@@ -86,9 +98,9 @@ const prevBtn = document.getElementById('prev');
 
 if (nextBtn && prevBtn) {
     nextBtn.addEventListener('click', () => {
-        if (window.innerWidth > 1200) {
+        if (window.innerWidth > 768) {
             const totalCards = cards.length;
-            const visibleCards = 4;
+            const visibleCards = window.innerWidth > 1200 ? 4 : 3;
             if (currentIndex < totalCards - visibleCards) {
                 currentIndex++;
                 updateTestimonialSlider();
@@ -97,7 +109,7 @@ if (nextBtn && prevBtn) {
     });
 
     prevBtn.addEventListener('click', () => {
-        if (window.innerWidth > 1200) {
+        if (window.innerWidth > 768) {
             if (currentIndex > 0) {
                 currentIndex--;
                 updateTestimonialSlider();
@@ -111,8 +123,8 @@ window.addEventListener('resize', () => {
     updatePizzaSlider();
     updateTestimonialSlider();
     
-    // Close mobile menu if window is resized to desktop
-    if (window.innerWidth > 1200 && hamburger && navMenu) {
+    // Close mobile menu if window is resized above mobile breakpoint
+    if (window.innerWidth > 768 && hamburger && navMenu) {
         hamburger.classList.remove('active');
         navMenu.classList.remove('active');
     }
