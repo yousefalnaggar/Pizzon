@@ -1,11 +1,11 @@
 :root {
-    --background-color : #FFFFFF;
-    --background-secondary-color : #FFFAED;
-    --main-color : #FBB200;
-    --hover-black-color : #111111;
-    --hover-red-color : #F22E3E;
+    --background-color: #ffffff;
+    --background-secondary-color: #fffaed;
+    --main-color: #fbb200;
+    --hover-black-color: #111111;
+    --hover-red-color: #f22e3e;
     --grey-color: #777777;
-    --border-grey-color : #e4ded9;
+    --border-grey-color: #e4ded9;
 }
 
 * {
@@ -19,8 +19,16 @@ html {
 }
 
 body {
-    font-family: 'Cairo', sans-serif;
-    background-color:var(--background-color) ;
+    font-family: "Cairo", sans-serif;
+    background-image: radial-gradient(#565656 0.8px, #f3ecdf 0.8px);
+    background-size: 53px 53px;
+}
+
+.container {
+    max-width: 2000px;
+    margin: 0 auto;
+    background-color: var(--background-color);
+    box-shadow: 0 0 200px rgba(0, 0, 0, 0.2);
 }
 
 header {
@@ -36,7 +44,7 @@ ul {
     list-style: none;
 }
 
-.logo-img { 
+.logo-img {
     width: 80px;
     height: 100px;
 }
@@ -53,12 +61,11 @@ ul {
 }
 
 .navbar-list .active-link {
-border-bottom: 2px solid var(--hover-red-color);
-color: var(--hover-red-color);
-
+    border-bottom: 2px solid var(--hover-red-color);
+    color: var(--hover-red-color);
 }
 
-.navbar-list li a { 
+.navbar-list li a {
     background-color: transparent;
     font-size: 25px;
     text-decoration: none;
@@ -68,7 +75,6 @@ color: var(--hover-red-color);
     text-transform: uppercase;
     border-bottom: 2px solid var(--background-color);
     transition: 0.3s;
-
 }
 
 .navbar-list li a:hover {
@@ -139,7 +145,11 @@ h1 span {
     color: var(--hover-red-color);
 }
 
-.hero-paragraph { 
+.hero {
+    position: relative;
+}
+
+.hero-paragraph {
     color: var(--grey-color);
     font-size: 28px;
     margin: 10px 0px 10px 50px;
@@ -178,7 +188,7 @@ h1 span {
     display: inline-block;
     width: 50%;
     position: absolute;
-    overflow: hidden;
+    overflow-x: clip;
 }
 
 .round-yellow {
@@ -189,13 +199,14 @@ h1 span {
     position: relative;
     transform: translate(50%);
     overflow: hidden;
-    z-index: -1;
+    z-index: 0;
 }
 
 .hero-leaf {
     position: absolute;
-    top: 13%;
-    right: 32%;
+    top: 7%;
+    right: 28%;
+    z-index: 3;
 }
 
 .hero-pizza {
@@ -204,40 +215,44 @@ h1 span {
     height: 500px;
     top: 15%;
     left: 6%;
+    z-index: 10;
 }
 
 .hero-buy-one {
     position: absolute;
     right: 5%;
     top: 33%;
+    z-index: 3;
 }
 
-.hero-side-pizza {  
+.hero-side-pizza {
     position: absolute;
-    right: 4%;
-    bottom: -210px;
+    right: 0;
+    bottom: -10%;
 }
 
 .hero-onion {
-    position: relative;
-    left: 40%;
-    top: 60px
+    position: absolute;
+    left: 0;
+    bottom: 14%;
 }
 
 .daily-fresh {
     display: flex;
     align-items: center;
     gap: 100px;
+    padding: 100px 0px;
 }
 
 .fresh-pizza-img {
     position: relative;
-    top: 70px
+    top: 70px;
 }
 
 .fresh-body {
     position: relative;
     top: 40px;
+    padding: 0 20px;
 }
 
 .fresh-main-paragraph {
@@ -276,7 +291,7 @@ h1 span {
 
 .section-heading-info {
     position: relative;
-    left: 50px;
+    margin-left: 20px;
     padding-bottom: 55px;
 }
 
@@ -287,6 +302,7 @@ h1 span {
     letter-spacing: 1.2px;
     padding-bottom: 10px;
 }
+
 .small-red-heading::after {
     content: "";
     height: 2px;
@@ -320,25 +336,49 @@ h1 span {
     cursor: pointer;
 }
 
+.popular-dishes {
+    overflow: hidden;
+}
+
+.menu-items-viewport {
+    margin: 0 auto;
+    overflow: hidden;
+}
+
 .menu-items {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     padding-bottom: 100px;
     transition: 0.3s ease;
+    gap: 20px;
+    width: calc(6 * 320px + 5 * 20px); /* All 6 items + gaps */
 }
 
 .menu-item {
-    height: 650px;
-    width: 435px;
+    flex: 0 0 auto;
+    width: 320px;
+    height: auto;
+    min-height: 500px;
     background-color: var(--background-color);
     border-radius: 50px;
     border: 1px solid var(--border-grey-color);
-    margin: 0 65px;
+    display: flex;
+    flex-direction: column;
 }
 
 .menu-item-image {
-    margin: 0px 41px;
+    margin: 20px;
+    padding: 10px;
+    text-align: center;
     transition: all 0.4s ease;
+    overflow: hidden;
+}
+
+.menu-item-image img {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    object-fit: contain;
 }
 
 .menu-item-image:hover {
@@ -354,7 +394,7 @@ h1 span {
 
 .menu-item-title {
     color: var(--hover-black-color);
-    font-size: 30px;
+    font-size: 28px;
     font-weight: 500;
     transition: 0.3s;
 }
@@ -394,10 +434,11 @@ h1 span {
     font-weight: 500;
     padding-left: 30px;
     transition: 0.3s;
+    margin-bottom: 20px;
 }
 
 .menu-item-order::before {
-    font-family: 'Font Awesome 5 Free';
+    font-family: "Font Awesome 5 Free";
     font-weight: 600;
     content: "\f07a";
     position: relative;
@@ -412,23 +453,25 @@ h1 span {
 .our-story {
     display: flex;
     padding-bottom: 50px;
+    justify-content: space-between;
 }
 
 .our-story-photos {
     position: relative;
     height: 700px;
-    width: 50%;
+    flex-basis: 45%;
+    /* flex-shrink: 1; */
 }
 
 .our-story-pizza-img {
-    position: absolute;
-    left: 7%;
+    max-width: 650px;
+    padding-top: 50px;
 }
 
 .our-story-onion-img {
-    position: relative;
-    bottom: -550px;
-    left: 12%;
+    position: absolute;
+    bottom: 0;
+    left: 8%;
 }
 
 .our-story-jamun-img {
@@ -438,6 +481,7 @@ h1 span {
 
 .our-story .section-heading-info {
     padding-top: 70px;
+    padding-right: 50px;
 }
 
 .our-story .small-red-heading::after {
@@ -446,13 +490,13 @@ h1 span {
 }
 
 .our-story .section-info {
-display: block;
+    display: block;
 }
 
 .our-story .section-body p {
     font-size: 25px;
-    position: relative;
-    left: 50px;
+    position: static;
+    padding: 0 50px;
     line-height: 1.3;
     color: var(--grey-color);
 }
@@ -476,14 +520,15 @@ display: block;
 }
 
 .read-more-btn::after {
-    font-family: 'Font Awesome 5 Free';
+    font-family: "Font Awesome 5 Free";
     font-weight: 600;
     content: "\f061";
     position: relative;
     right: -20px;
 }
 
-.read-more-btn:hover, .book-now-btn:hover {
+.read-more-btn:hover,
+.book-now-btn:hover {
     cursor: pointer;
     background-color: var(--hover-red-color);
 }
@@ -503,6 +548,7 @@ display: block;
     justify-content: space-between;
     margin: 0 50px;
     padding-top: 40px;
+    gap: 30px;
 }
 
 .Strength-item-icon {
@@ -542,15 +588,16 @@ display: block;
     justify-content: space-between;
     padding: 20px 0px;
     transition: 0.3s ease;
+    gap: 10px;
 }
 
 .testimonial-card {
-        flex: 0 0 24%;
-        border: 1px solid var(--border-grey-color);
-        border-radius: 50px;
-        text-align: center;
-        padding: 35px 20px;
-        margin-right: 10px;
+    flex: 0 0 24%;
+    border: 1px solid var(--border-grey-color);
+    border-radius: 50px;
+    text-align: center;
+    padding: 35px 20px;
+    margin-right: 10px;
 }
 
 .client-img {
@@ -584,7 +631,8 @@ display: block;
 
 .form-group {
     padding-top: 150px;
-    width: 50%;
+    width: 60%;
+    flex-shrink: 0;
 }
 
 .res-form {
@@ -619,8 +667,9 @@ form input {
 }
 
 .reservation-imgs {
-    width: 50%;
+    width: 40%;
     position: relative;
+    overflow: hidden;
 }
 
 .book-pizza {
@@ -641,15 +690,17 @@ form input {
 }
 
 .first-leaf {
-    position: absolute;
+    /* position: absolute;
     left: -4%;
-    top: 80px;
+    top: 80px; */
+    display: none;
 }
 
 .second-leaf {
-    position: absolute;
+    /* position: absolute;
     top: 237px;
-    left: -6%;
+    left: -6%; */
+    display: none;
 }
 
 .third-leaf {
@@ -659,34 +710,32 @@ form input {
     z-index: -1;
 }
 
-/* Responsive Styles */
-@media screen and (max-width: 1400px) {
-    .hero-body {
-        width: 45%;
-    }
-    
-    .hero-photos {
-        width: 55%;
-        
-
-    }
-    
-    h1 {
-        font-size: 60px;
-        line-height: 75px;
-    }
-    
-    .hero-paragraph {
-        font-size: 24px;
-    }
+footer {
+    background-color: var(--background-secondary-color);
+    padding: 20px 0;
+    text-align: center;
 }
 
-@media screen and (max-width: 1200px) {
+footer p {
+    margin: 0;
+    font-size: 16px;
+    color: var(--hover-black-color);
+    font-weight: 500;
+}
+
+/* Responsive Styles */
+
+@media screen and (max-width: 768px) {
     /* Show hamburger menu, hide regular navigation */
+
+    img {
+        max-width: 100%;
+    }
+
     .hamburger {
         display: flex;
     }
-    
+
     .nav-menu {
         position: fixed;
         top: 120px;
@@ -699,55 +748,61 @@ form input {
         z-index: 999;
         overflow-y: auto;
     }
-    
+
     .nav-menu.active {
         right: 0;
     }
-    
+
     .navbar-list {
         flex-direction: column;
         align-items: flex-start;
         padding: 30px;
         gap: 0;
     }
-    
+
     .navbar-list li {
         width: 100%;
         padding: 15px 0;
         border-bottom: 1px solid var(--border-grey-color);
     }
-    
+
     .navbar-list li a {
         font-size: 20px;
         display: block;
     }
-    
+
     .navbar-icons {
         margin-top: 30px;
         justify-content: flex-start;
         gap: 20px;
     }
-    
+
     /* Hide slider navigation, make items vertical */
     .section-nav {
         display: none;
     }
-    
+
+    .menu-items-viewport {
+        width: auto;
+        margin: 0 20px;
+    }
+
     .menu-items {
         flex-direction: column;
         align-items: center;
         gap: 30px;
         transform: none !important;
+        width: auto;
     }
-    
+
     .menu-item {
-        height: auto;
+        flex: none;
         width: 90%;
         max-width: 435px;
         margin: 0;
         padding-bottom: 30px;
     }
-    
+
     .testimonials {
         flex-direction: column;
         align-items: center;
@@ -757,49 +812,47 @@ form input {
         max-width: 600px;
         transform: none !important;
     }
-    
+
     .testimonial-card {
         width: 100%;
         flex: none;
         margin-right: 0;
     }
-    
+
     .hero {
         flex-direction: column;
         padding: 20px;
     }
-    
+
     .hero-body {
         width: 100%;
         margin-top: 50px;
         text-align: center;
     }
-    
+
     h1 {
         font-size: 50px;
         line-height: 60px;
-        margin: 0 auto 20px;
     }
-    
+
     .hero-paragraph {
         margin: 10px auto;
         font-size: 22px;
     }
-    
+
     .hero-button {
         margin: 30px auto;
         display: block;
     }
-    
+
     .hero-photos {
         position: static;
         width: 100%;
         height: 500px;
         margin-top: 30px;
         display: none;
-
     }
-    
+
     .round-yellow {
         height: 500px;
         transform: translate(0);
@@ -807,7 +860,7 @@ form input {
         width: 80%;
         left: 10%;
     }
-    
+
     .hero-pizza {
         width: 350px;
         height: 350px;
@@ -815,7 +868,7 @@ form input {
         transform: translateX(-50%);
         top: 10%;
     }
-    
+
     .hero-leaf {
         right: auto;
         left: 50%;
@@ -823,29 +876,29 @@ form input {
         top: 5%;
         width: 80px;
     }
-    
+
     .hero-buy-one {
         right: 10%;
         top: 40%;
         width: 100px;
     }
-    
+
     .hero-side-pizza {
         display: none;
     }
-    
+
     .hero-onion {
         left: 5%;
         top: 30px;
         width: 80px;
     }
-    
+
     .daily-fresh {
         flex-direction: column;
         gap: 30px;
         padding: 20px;
     }
-    
+
     .fresh-pizza-img {
         width: 100%;
         max-width: 400px;
@@ -853,125 +906,128 @@ form input {
         display: block;
         margin: 0 auto;
     }
-    
+
     .fresh-body {
         top: 0;
         text-align: center;
     }
-    
+
     .fresh-main-paragraph {
         font-size: 32px;
         line-height: 40px;
     }
-    
+
     .fresh-second-paragraph {
         font-size: 20px;
     }
-    
+
     .fresh-onion {
         display: none;
     }
-    
-    .section-heading-info {
-        left: 20px;
-        text-align: center;
+
+    .section-info {
+        display: block;
     }
-    
+
+    .section-heading-info {
+        position: static;
+        margin-left: 20px;
+    }
+
     .section-heading {
         font-size: 36px;
     }
-    
+
     .small-red-heading::after {
         display: none;
     }
-    
+
     .our-story {
         flex-direction: column;
-        padding: 20px;
+        /* padding: 20px; */
     }
-    
+
     .our-story-photos {
-        width: 100%;
-        height: 400px;
-        margin-bottom: 30px;
+        display: none;
     }
-    
-    .our-story-pizza-img {
+
+    /* .our-story-pizza-img {
         width: 100%;
         max-width: 400px;
         left: 50%;
         transform: translateX(-50%);
-    }
-    
-    .our-story-onion-img,
-    .our-story-jamun-img {
-        display: none;
-    }
-    
+    } */
+
     .our-story-info {
         width: 100%;
     }
-    
+
     .our-story .section-heading-info {
         padding-top: 20px;
+        padding-right: 50px;
     }
-    
+
     .our-story .section-body p {
-        left: 20px;
-        font-size: 20px;
+        font-size: 24px;
         text-align: center;
+        padding: 0 15px 30px 15px;
+        line-height: 1.5;
     }
-    
+
     .read-more-btn {
-        left: 50%;
-        transform: translateX(-50%);
+        position: static;
+        margin: 0 auto;
+        display: block;
+        font-size: 20px;
+        width: 200px;
+        height: 65px;
     }
-    
+
     .our-strength-items {
         flex-wrap: wrap;
         justify-content: center;
         gap: 30px;
         margin: 0 20px;
     }
-    
+
     .our-strength-item {
         width: 45%;
         min-width: 250px;
         text-align: center;
     }
-    
+
     .strength-pan-img {
         display: none;
     }
-    
+
     .reservation {
         flex-direction: column;
     }
-    
+
     .form-group {
         width: 100%;
         padding: 50px 20px;
     }
-    
+
     .res-form {
         left: 0;
         padding: 0 20px;
     }
-    
+
     form input {
         width: 100%;
         margin: 0 0 30px 0;
     }
-    
+
     .book-now-btn {
         width: 100%;
     }
-    
+
     .reservation-imgs {
         width: 100%;
         height: 400px;
     }
-    
+
     .book-pizza {
         width: 100%;
         max-width: 400px;
@@ -979,175 +1035,179 @@ form input {
         transform: translateX(-50%);
         top: 20px;
     }
-    
-    
+
     .reservation-imgs {
         display: none;
     }
 }
 
-@media screen and (max-width: 768px) {
+/* Above 1400px - Show 4 pizzas */
+@media (min-width: 1400px) {
+    .menu-items-viewport {
+        width: calc(4 * 320px + 3 * 20px); /* 4 items visible + 3 gaps */
+    }
+}
+
+/* 1024px to 1400px - Show 3 pizzas */
+@media (max-width: 1399px) and (min-width: 1024px) {
+    .menu-items-viewport {
+        width: calc(3 * 320px + 2 * 20px); /* 3 items visible + 2 gaps */
+    }
+}
+
+/* 768px to 1024px - Show 2 pizzas */
+@media (max-width: 1023px) and (min-width: 768px) {
+    .menu-items-viewport {
+        width: calc(2 * 320px + 1 * 20px); /* 2 items visible + 1 gap */
+    }
+}
+
+@media (max-width: 1400px) {
+    .fresh-onion {
+        display: none;
+    }
+}
+
+@media (max-width: 1200px) {
+    .hero-side-pizza,
+    .hero-onion,
+    .hero-buy-one {
+        display: none;
+    }
+
+    .round-yellow {
+        height: 650px;
+    }
+
     h1 {
-        font-size: 40px;
-        line-height: 50px;
+        font-size: 50px;
+        line-height: 60px;
     }
-    
+
     .hero-paragraph {
-        font-size: 18px;
+        font-size: 22px;
     }
-    
-    .hero-button {
-        width: 220px;
+
+    .strength-pan-img {
+        width: 250px;
+    }
+}
+
+@media (width > 768px) and (width <=1024px) {
+    .our-strength-items {
+        flex-wrap: wrap;
+    }
+
+    .our-strength-item {
+        width: 45%;
+        min-width: 250px;
+        text-align: center;
+    }
+
+    .testimonial-card {
+        flex: 0 0 48%;
+    }
+
+    /* Our Story Section - Tablet Layout */
+    .our-story {
+        flex-direction: column;
+        align-items: center;
+        padding: 60px 20px;
+        gap: 40px;
+    }
+
+    .our-story-photos {
+        width: 100%;
+        max-width: 500px;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+    }
+
+    .our-story-pizza-img {
+        max-width: 400px;
+        width: 100%;
+        height: auto;
+        padding-top: 0;
+        z-index: 2;
+    }
+
+    .our-story-onion-img {
+        width: 80px;
+        height: auto;
+        position: absolute;
+        bottom: -20px;
+        left: 10%;
+        z-index: 1;
+    }
+
+    .our-story-jamun-img {
+        width: 60px;
+        height: auto;
+        position: absolute;
+        top: 20px;
+        left: -10px;
+        z-index: 1;
+    }
+
+    .our-story-info {
+        width: 100%;
+        max-width: 600px;
+        text-align: center;
+    }
+
+    .our-story .section-heading-info {
+        padding-top: 20px;
+        padding-right: 0;
+        text-align: center;
+    }
+
+    .our-story .section-heading {
+        font-size: 36px;
+        line-height: 1.2;
+        margin-bottom: 20px;
+    }
+
+    .our-story .small-red-heading {
+        font-size: 26px;
+        margin-bottom: 15px;
+    }
+
+    .our-story .small-red-heading::after {
+        display: none;
+    }
+
+    .our-story .section-body p {
+        font-size: 20px;
+        line-height: 1.5;
+        padding: 0 30px;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    .read-more-btn {
+        position: static;
+        margin: 0 auto;
+        display: block;
+        width: 200px;
         height: 60px;
         font-size: 20px;
     }
-    
-    .hero-photos {
-        height: 400px;
-        display: none;
-
-    }
-    
-    .round-yellow {
-        height: 400px;
-    }
-    
-    .hero-pizza {
-        width: 280px;
-        height: 280px;
-    }
-    
-    .fresh-main-paragraph {
-        font-size: 28px;
-        line-height: 36px;
-    }
-    
-    .fresh-second-paragraph {
-        font-size: 18px;
-    }
-    
-    .section-heading {
-        font-size: 30px;
-    }
-    
-    .small-red-heading {
-        font-size: 24px;
-    }
-    
-    .menu-item {
-        width: 95%;
-    }
-    
-    .menu-item-title {
-        font-size: 24px;
-    }
-    
-    .menu-item-desc {
-        font-size: 18px;
-    }
-    
-    .our-strength-item {
-        width: 100%;
-    }
-    
-    .Strength-item-title {
-        font-size: 22px;
-    }
-    
-    .Strength-item-desc {
-        font-size: 18px;
-    }
-    
-    .client-name {
-        font-size: 22px;
-    }
-    
-    .client-feedback {
-        font-size: 18px;
-    }
 }
 
-@media screen and (max-width: 480px) {
-    .logo-img {
-        width: 60px;
-        height: 75px;
+@media (max-width: 1410px) and (min-width: 1024px) {
+    .our-story-pizza-img {
+        max-width: 450px;
+        padding-top: 170px;
     }
-    
-    h1 {
-        font-size: 32px;
-        line-height: 40px;
-        margin: 0 20px 10px;
+
+    .our-story .small-red-heading::after {
+        left: 30%;
     }
-    
-    .hero-paragraph {
-        font-size: 16px;
-        margin: 10px 20px;
-    }
-    
-    .hero-button {
-        width: 180px;
-        height: 50px;
-        font-size: 18px;
-        padding-left: 20px;
-    }
-    
-    .hero-photos {
-        height: 350px;
-        display: none;
-    }
-    
-    .round-yellow {
-        height: 350px;
-        width: 90%;
-        left: 5%;
-    }
-    
-    .hero-pizza {
-        width: 220px;
-        height: 220px;
-    }
-    
-    .hero-buy-one {
-        width: 80px;
-    }
-    
-    .fresh-main-paragraph {
-        font-size: 24px;
-        line-height: 32px;
-        padding: 20px 10px;
-    }
-    
-    .fresh-second-paragraph {
-        font-size: 16px;
-    }
-    
-    .section-heading {
-        font-size: 24px;
-    }
-    
-    .small-red-heading {
-        font-size: 20px;
-    }
-    
-    .section-heading-info {
-        left: 10px;
-        padding-bottom: 30px;
-    }
-    
-    .menu-item-image img {
-        width: 100%;
-    }
-    
-    .read-more-btn,
-    .book-now-btn {
-        font-size: 20px;
-        width: 90%;
-    }
-    
-    .our-story .section-body p {
-        font-size: 16px;
-        left: 10px;
-        padding: 0 10px;
+
+    .testimonial-card {
+        flex: 0 0 33%;
     }
 }
-
