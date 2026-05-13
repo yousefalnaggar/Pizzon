@@ -351,7 +351,8 @@ h1 span {
     padding-bottom: 100px;
     transition: 0.3s ease;
     gap: 20px;
-    width: calc(6 * 320px + 5 * 20px); /* All 6 items + gaps */
+    width: calc(6 * 320px + 5 * 20px);
+    /* All 6 items + gaps */
 }
 
 .menu-item {
@@ -728,6 +729,10 @@ footer p {
 @media screen and (max-width: 768px) {
     /* Show hamburger menu, hide regular navigation */
 
+    h1 {
+        margin: auto;
+    }
+
     img {
         max-width: 100%;
     }
@@ -1044,21 +1049,24 @@ footer p {
 /* Above 1400px - Show 4 pizzas */
 @media (min-width: 1400px) {
     .menu-items-viewport {
-        width: calc(4 * 320px + 3 * 20px); /* 4 items visible + 3 gaps */
+        width: calc(4 * 320px + 3 * 20px);
+        /* 4 items visible + 3 gaps */
     }
 }
 
 /* 1024px to 1400px - Show 3 pizzas */
 @media (max-width: 1399px) and (min-width: 1024px) {
     .menu-items-viewport {
-        width: calc(3 * 320px + 2 * 20px); /* 3 items visible + 2 gaps */
+        width: calc(3 * 320px + 2 * 20px);
+        /* 3 items visible + 2 gaps */
     }
 }
 
 /* 768px to 1024px - Show 2 pizzas */
 @media (max-width: 1023px) and (min-width: 768px) {
     .menu-items-viewport {
-        width: calc(2 * 320px + 1 * 20px); /* 2 items visible + 1 gap */
+        width: calc(2 * 320px + 1 * 20px);
+        /* 2 items visible + 1 gap */
     }
 }
 
@@ -1069,6 +1077,7 @@ footer p {
 }
 
 @media (max-width: 1200px) {
+
     .hero-side-pizza,
     .hero-onion,
     .hero-buy-one {
